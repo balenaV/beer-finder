@@ -2,6 +2,7 @@
 
 use App\Livewire\Beers\Create;
 use App\Livewire\Beers\Index;
+use App\Livewire\Beers\Update;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -37,4 +38,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('beers', Index::class)->name('beers.index');
     Route::get('beers/create', Create::class)->name('beers.create');
+    Route::get('beers/{beer}', Update::class)->name('beers.update');
 });

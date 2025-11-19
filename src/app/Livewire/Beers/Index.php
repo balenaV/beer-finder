@@ -40,15 +40,21 @@ class Index extends Component
      *
      * @return void
      */
-    public function filter(){
+    public function filter()
+    {
         $this->validateForFilter();
         $this->resetPage();
+    }
+
+    public function remove(Beer $beer)
+    {
+        $beer->delete();
     }
 
     public function render()
     {
         return view('livewire.beers.index', [
-            'beers' => $this->beerService->getBeers($this->sortBy, $this->sortDirection,$this->filters)
+            'beers' => $this->beerService->getBeers($this->sortBy, $this->sortDirection, $this->filters)
         ]);
     }
 
@@ -57,17 +63,18 @@ class Index extends Component
      *
      * @return void
      */
-    private function validateForFilter(){
+    private function validateForFilter()
+    {
         return $this->validate([
-            'filters.name'=> 'nullable|string|min:3|max:255',
-            'filters.prop_filter'=> 'nullable',
-            'filters.prop_filter_rule'=> 'required_with:filters.prop_filter',
-            'filters.prop_filter_value'=> 'required_with:filters.prop_filter_rule',
+            'filters.name' => 'nullable|string|min:3|max:255',
+            'filters.prop_filter' => 'nullable',
+            'filters.prop_filter_rule' => 'required_with:filters.prop_filter',
+            'filters.prop_filter_value' => 'required_with:filters.prop_filter_rule',
 
-        ],[
+        ], [
             'filters.name.string' => 'O nome está em um formato inválido',
             'filters.name.min' => 'O nome deve ter no mínimo 3 caracteres.',
-    'filters.name.max' => 'O nome deve ter no máximo 255 caracteres.',
+            'filters.name.max' => 'O nome deve ter no máximo 255 caracteres.',
             'filters.prop_filter_rule.required_with' => 'Selecione alguma Regra!',
             'filters.prop_filter_value.required_with' => 'Selecione algum Valor!'
         ]);

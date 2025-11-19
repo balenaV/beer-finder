@@ -107,6 +107,14 @@
                                 <x-table.cell>
                                     {{ $beer['volume'] }}
                                 </x-table.cell>
+                                <x-table.cell>
+                                    <flux:button href="{{ route('beers.update', $beer['id']) }}" variant="ghost"
+                                        size="sm" icon="pencil" class="cursor-pointer" inset="top bottom">
+                                    </flux:button>
+                                    <flux:button wire:click="remove({{ $beer['id'] }})" variant="ghost"
+                                        size="sm" icon="trash" class="cursor-pointer" inset="top bottom">
+                                    </flux:button>
+                                </x-table.cell>
                             </x-table.row>
                         @endforeach
                     </x-table.rows>
