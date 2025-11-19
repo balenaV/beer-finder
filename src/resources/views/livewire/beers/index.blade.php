@@ -1,4 +1,5 @@
 <div>
+
     <flux:main container="">
         <div class="flex flex-row items-center justify-between w-full">
             <div>
@@ -8,16 +9,16 @@
             <flux:button href="{{ route('beers.create') }}" icon="plus-circle">Criar nova cerveja</flux:button>
         </div>
 
-       <div class="grid lg:grid-cols-13 gap-4 mb-6 items-end">
+        <div class="grid lg:grid-cols-13 gap-4 mb-6 items-end">
 
             <div class="col-span-3">
-                <flux:field >
+                <flux:field>
                     <flux:input label="Nome" placeholder="Busque pelo nome da cerveja" wire:model="filters.name" />
                 </flux:field>
             </div>
 
             <div class="col-span-3">
-                <flux:field >
+                <flux:field>
                     <flux:select label="Propriedade" wire:model.live="filters.prop_filter">
                         <flux:select.option value="">Selecione</flux:select.option>
                         <flux:select.option value="first_brewed_date">Data da primeira fabricação</flux:select.option>
@@ -31,8 +32,9 @@
             </div>
 
             <div class="col-span-3">
-                <flux:field >
-                    <flux:select label="Regra" :disabled="empty($filters['prop_filter'])" wire:model.live="filters.prop_filter_rule">
+                <flux:field>
+                    <flux:select label="Regra" :disabled="empty($filters['prop_filter'])"
+                        wire:model.live="filters.prop_filter_rule">
                         <flux:select.option value="">Selecione</flux:select.option>
                         <flux:select.option value=">">Maior que</flux:select.option>
                         <flux:select.option value="<">Menor que</flux:select.option>
@@ -44,17 +46,15 @@
             </div>
 
             <div class="col-span-3">
-                <flux:field >
-                    <flux:input label="Valor"
-                                placeholder="Valor desejado"
-                                wire:model.live="filters.prop_filter_value"
-                                :disabled="empty($filters['prop_filter_rule'])"
-                                :type="isset($filters['prop_filter']) && $filters['prop_filter'] == 'first_brewed_date' ? 'date' : 'number'"
-                    />
+                <flux:field>
+                    <flux:input label="Valor" placeholder="Valor desejado" wire:model.live="filters.prop_filter_value"
+                        :disabled="empty($filters['prop_filter_rule'])"
+                        :type="isset($filters['prop_filter']) && $filters['prop_filter'] == 'first_brewed_date' ? 'date' :
+                            'number'" />
                 </flux:field>
             </div>
             <div class="col-span-1">
-                <flux:field >
+                <flux:field>
                     <flux:button wire:click="filter" icon="magnifying-glass" class="w-full"></flux:button>
                 </flux:field>
             </div>
